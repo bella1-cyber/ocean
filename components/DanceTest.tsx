@@ -52,7 +52,7 @@ const DATA = {
   },
   results: {
     Breaking: { title: "브레이킹 (Breaking)", desc: "당신은 짱구 해변의 비보이/비걸!\n거침없는 기술로 바닥을 뒤흔듭니다." },
-    Locking: { title: "로킹 (Locking)", desc: "유쾌한 에너지의 소유자!\n'철컥' 멈추는 절도로 시선을 사로잡네요." },
+    Locking: { title: "락킹 (Locking)", desc: "유쾌한 에너지의 소유자!\n'철컥' 멈추는 절도로 시선을 사로잡네요." },
     Voguing: { title: "보깅 (Voguing)", desc: "당신이 걷는 모든 곳이 런웨이!\n드라마틱한 포징의 대가입니다." },
     House: { title: "하우스 (House)", desc: "깃털처럼 가벼운 발놀림!\n끊이지 않는 스텝으로 밤을 지배합니다." },
     Popping: { title: "팝핑 (Popping)", desc: "통제된 카리스마!\n비트를 몸으로 쪼개는 인간 메트로놈입니다." },
