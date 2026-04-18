@@ -32,7 +32,7 @@ const DATA = {
       options: [
         { text: "자물쇠가 잠기듯 '철컥' 멈추기", next: "Locking" },
         { text: "영화 속 모델처럼 드라마틱한 포즈!", next: "Voguing" },
-        { text: "빠른 비트 위로 쉴 새 없는 발놀림!", next: "House" }, // ✨ 하우스 추가!
+        { text: "빠른 비트 위로 쉴 새 없는 발놀림!", next: "House" },
       ]
     },
     q5: {
@@ -52,7 +52,7 @@ const DATA = {
   },
   results: {
     Breaking: { title: "브레이킹 (Breaking)", desc: "당신은 짱구 해변의 비보이/비걸!\n거침없는 기술로 바닥을 뒤흔듭니다." },
-    Locking: { title: "락킹 (Locking)", desc: "유쾌한 에너지의 소유자!\n'철컥' 멈추는 절도로 시선을 사로잡네요." },
+    Locking: { title: "로킹 (Locking)", desc: "유쾌한 에너지의 소유자!\n'철컥' 멈추는 절도로 시선을 사로잡네요." },
     Voguing: { title: "보깅 (Voguing)", desc: "당신이 걷는 모든 곳이 런웨이!\n드라마틱한 포징의 대가입니다." },
     House: { title: "하우스 (House)", desc: "깃털처럼 가벼운 발놀림!\n끊이지 않는 스텝으로 밤을 지배합니다." },
     Popping: { title: "팝핑 (Popping)", desc: "통제된 카리스마!\n비트를 몸으로 쪼개는 인간 메트로놈입니다." },
@@ -63,12 +63,12 @@ const DATA = {
 }
 
 export function DanceTest() {
-  const [step, setStep] = useState<string>("q1")
-  const [result, setResult] = useState<any>(null)
+  const [step, setStep] = useState("q1")
+  const [result, setResult] = useState(null)
 
-  const handleChoice = (next: string) => {
-    if (DATA.results[next as keyof typeof DATA.results]) {
-      setResult(DATA.results[next as keyof typeof DATA.results])
+  const handleChoice = (next) => {
+    if (DATA.results[next]) {
+      setResult(DATA.results[next])
     } else {
       setStep(next)
     }
@@ -80,49 +80,76 @@ export function DanceTest() {
   }
 
   return (
-    <div className="mx-auto my-16 w-full max-w-lg rounded-[32px] border-2 border-primary/20 bg-black/40 p-8 shadow-2xl backdrop-blur-xl">
+    <div style={{
+      maxWidth: '500px',
+      margin: '60px auto',
+      padding: '40px',
+      backgroundColor: 'rgba(20, 20, 20, 0.9)',
+      borderRadius: '30px',
+      border: '2px solid rgba(255, 0, 150, 0.3)',
+      boxShadow: '0 0 30px rgba(255, 0, 150, 0.2)',
+      textAlign: 'center',
+      color: 'white',
+      fontFamily: 'sans-serif'
+    }}>
       {!result ? (
-        <div className="flex flex-col gap-8">
-          <div className="text-center">
-            <span className="text-[10px] tracking-[0.4em] text-primary/60 uppercase">DANCE ORIENTATION TEST</span>
-            <h2 className="mt-4 whitespace-pre-line font-display text-2xl leading-tight text-foreground neon-pink">
-              {DATA.questions[step as keyof typeof DATA.questions].text}
-            </h2>
-          </div>
-          <div className="flex flex-col gap-4">
-            {DATA.questions[step as keyof typeof DATA.questions].options.map((opt, i) => (
+        <div>
+          <span style={{ fontSize: '10px', letterSpacing: '4px', color: '#ff0096' }}>DANCE ORIENTATION TEST</span>
+          <h2 style={{ marginTop: '20px', fontSize: '24px', whiteSpace: 'pre-line' }}>
+            {DATA.questions[step].text}
+          </h2>
+          <div style={{ marginTop: '30px', display: 'flex', flexDirection: 'column', gap: '15px' }}>
+            {DATA.questions[step].options.map((opt, i) => (
               <button
                 key={i}
                 onClick={() => handleChoice(opt.next)}
-                className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-5 text-left transition-all hover:border-primary/50 hover:bg-primary/10"
+                style={{
+                  padding: '15px',
+                  borderRadius: '15px',
+                  border: '1px solid rgba(255,255,255,0.1)',
+                  backgroundColor: 'rgba(255,255,255,0.05)',
+                  color: 'white',
+                  cursor: 'pointer',
+                  textAlign: 'left',
+                  transition: '0.2s'
+                }}
+                onMouseOver={(e) => e.currentTarget.style.backgroundColor = 'rgba(255, 0, 150, 0.2)'}
+                onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.05)'}
               >
-                <span className="relative z-10 text-foreground/80 group-hover:text-primary">{opt.text}</span>
-                <div className="absolute inset-0 translate-y-full bg-gradient-to-t from-primary/5 to-transparent transition-transform group-hover:translate-y-0" />
+                {opt.text}
               </button>
             ))}
           </div>
         </div>
       ) : (
-        <div className="text-center">
-          <span className="text-[10px] tracking-[0.4em] text-accent uppercase font-bold">YOUR RHYTHM IS...</span>
-          <h2 className="mt-4 text-4xl font-black neon-pink italic tracking-tighter">{result.title}</h2>
-          <p className="mt-6 text-lg text-foreground/70 leading-relaxed whitespace-pre-line">{result.desc}</p>
-          
-          <div className="mt-10 flex flex-col gap-4">
+        <div>
+          <span style={{ fontSize: '10px', letterSpacing: '4px', color: '#ffd700' }}>YOUR RHYTHM IS...</span>
+          <h2 style={{ marginTop: '20px', fontSize: '36px', fontWeight: '900', color: '#ff0096', fontStyle: 'italic' }}>
+            {result.title}
+          </h2>
+          <p style={{ marginTop: '20px', fontSize: '18px', color: 'rgba(255,255,255,0.7)', lineHeight: '1.6' }}>
+            {result.desc}
+          </p>
+          <div style={{ marginTop: '40px', display: 'flex', flexDirection: 'column', gap: '15px' }}>
             <a
               href={STORY_LINK}
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative flex items-center justify-center rounded-2xl bg-primary px-8 py-5 font-bold text-black transition-all hover:scale-[1.02] active:scale-95 shadow-[0_0_30px_rgba(var(--primary),0.3)]"
+              style={{
+                padding: '20px',
+                borderRadius: '15px',
+                backgroundColor: '#ff0096',
+                color: 'black',
+                fontWeight: 'bold',
+                textDecoration: 'none',
+                fontSize: '20px'
+              }}
             >
-              <span className="relative z-10 flex items-center gap-2 text-xl">
-                🌴 발리로 이동하기
-              </span>
+              🌴 발리로 이동하기
             </a>
-
             <button
               onClick={reset}
-              className="text-sm text-foreground/30 underline underline-offset-4 hover:text-primary transition-colors"
+              style={{ background: 'none', border: 'none', color: 'rgba(255,255,255,0.3)', textDecoration: 'underline', cursor: 'pointer' }}
             >
               다시 테스트하기
             </button>
