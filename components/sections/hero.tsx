@@ -50,11 +50,11 @@ export function Hero() {
         </h1>
 
         {/* 서브 카피 */}
-        <p className="mt-8 max-w-2xl text-pretty font-sans text-base leading-relaxed text-foreground/80 sm:text-lg">
-          낮의 태양이 가라앉으면 짱구 해변은 다른 얼굴이 된다. 모래 위 베이스 라인, 폐공장의 사이퍼,
-          서퍼와 댄서가 뒤엉키는 위험한 로맨스. <span className="font-[family-name:var(--font-kr-display)] text-foreground">스텝업</span>의 리듬과 트로피컬 느와르의 그림자가
-          한 번에 흐르는 이야기.
-        </p>
+        <p className="mt-8 max-w-2xl text-pretty font-sans text-base leading-relaxed text-foreground/80 sm:text-lg whitespace-pre-line">
+  낮의 태양이 가라앉으면 짱구 해변은 다른 얼굴이 된다.
+  모래 위 베이스 라인, 폐공장의 사이퍼, 서퍼와 댄서가 뒤엉키는 위험한 로맨스.
+  <span className="font-[family-name:var(--font-kr-display)] text-foreground">스텝업</span>의 리듬과 트로피컬 느와르의 그림자가 한 번에 흐르는 이야기.
+</p>
 
         {/* 메타 라인 */}
         <div className="mt-10 flex flex-wrap gap-x-8 gap-y-3 font-mono text-xs uppercase tracking-widest text-foreground/65">
