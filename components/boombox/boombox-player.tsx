@@ -103,8 +103,7 @@ export function BoomboxPlayer({ className }: Props) {
       >
         {/* 손잡이/안테나 UI (기존과 동일) */}
         <div className="absolute left-1/2 top-[-14px] h-3 w-28 -translate-x-1/2 rounded-t-lg border-2 border-b-0 border-foreground/20 bg-gradient-to-b from-[oklch(0.28_0.05_200)] to-[oklch(0.14_0.04_200)] sm:w-40" />
-        <div className="absolute right-8 top-[-34px] h-8 w-[2px] rotate-12 rounded-full bg-foreground/40 sm:right-12 sm:h-12" />
-        <div className="absolute right-8 top-[-36px] h-[6px] w-[6px] rotate-12 rounded-full bg-primary shadow-[0_0_8px_oklch(0.7_0.27_350)] sm:right-12" />
+        
 
         <div className="flex items-center gap-3 sm:gap-5">
           <Speaker spinning={isPlaying && isPowered} />
