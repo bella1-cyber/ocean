@@ -1,10 +1,7 @@
 /**
  * 캐릭터 5명을 W 모양으로 배치.
- *  Row 1 (top):    K . W . E
- *  Row 2 (bottom):  D . T
- *
- * 이미지 첨부 후 각 캐릭터의 `src` 만 교체하면 즉시 적용됩니다.
- * 권장 경로: /public/characters/<slug>.png
+ * Row 1 (top):    K . W . E
+ * Row 2 (bottom):  D . T
  */
 
 type Character = {
@@ -117,17 +114,15 @@ export function Characters() {
           </span>
         </div>
 
-        {/* W 배치 — 6컬럼 그리드 (lg+), 모바일은 1열로 폴백 */}
+        {/* W 배치 */}
         <div className="hidden lg:block">
-          {/* Row 1: K (1-2), W (3-4), E (5-6) */}
           <div className="grid grid-cols-6 gap-5">
             {top.map((c, i) => (
               <div key={c.slug} className="col-span-2">
-                <CharCard c={c} index={["K", "W", "E"][i] === "K" ? 1 : ["K", "W", "E"][i] === "W" ? 3 : 5} />
+                <CharCard c={c} index={["K", "W", "E"][i] === "Kai" ? 1 : ["K", "W", "E"][i] === "W" ? 3 : 5} />
               </div>
             ))}
           </div>
-          {/* Row 2: D (2-3), T (4-5) — 위 카드 사이에 위치 */}
           <div className="mt-5 grid grid-cols-6 gap-5">
             <div className="col-span-2 col-start-2">
               <CharCard c={bottom[0]} index={2} />
@@ -160,7 +155,6 @@ function CharCard({ c, index }: { c: Character; index: number }) {
       {/* 캐릭터 이미지 */}
       <div className="relative aspect-[3/4] w-full overflow-hidden bg-gradient-to-br from-[oklch(0.22_0.06_200)] via-[oklch(0.14_0.04_200)] to-[oklch(0.08_0.025_200)]">
         {c.src ? (
-          // eslint-disable-next-line @next/next/no-img-element
           <img
             src={c.src || "/placeholder.svg"}
             alt={`${c.name} / ${c.ko}`}
@@ -168,7 +162,6 @@ function CharCard({ c, index }: { c: Character; index: number }) {
           />
         ) : null}
 
-        {/* 폴백 이니셜 */}
         <div className="pointer-events-none absolute inset-0 -z-10 flex items-center justify-center">
           <span
             className={`font-display text-[12rem] leading-none ${
@@ -179,29 +172,31 @@ function CharCard({ c, index }: { c: Character; index: number }) {
           </span>
         </div>
 
-        {/* 노이즈/스캔라인 */}
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[oklch(0.1_0.035_200)] via-transparent to-transparent" />
         <div className="pointer-events-none absolute inset-0 bg-[repeating-linear-gradient(0deg,rgba(255,255,255,0.03)_0px,rgba(255,255,255,0.03)_1px,transparent_1px,transparent_3px)]" />
 
-        {/* 번호 (좌상단) */}
         <span className="absolute left-3 top-3 font-mono text-[10px] uppercase tracking-[0.3em] text-accent">
           0{index} / 05
         </span>
       </div>
 
-      {/* 정보 */}
+      {/* 정보 영역 */}
       <div className="p-5">
-        <div className="flex items-baseline justify-between gap-3">
-          <h3 className={`font-display text-2xl uppercase tracking-tight ${colorClass}`}>{c.name}</h3>
-          <span className="font-mono text-xs text-foreground/55">·{c.age}</span>
+        {/* ⭐ 나이를 이름 옆으로 딱 붙게 수정 완료! */}
+        <div className="flex items-baseline gap-2">
+          <h3 className={`font-display text-2xl uppercase tracking-tight ${colorClass}`}>
+            {c.name}
+          </h3>
+          <span className="font-mono text-xs text-foreground/40">· {c.age}</span>
         </div>
+        
         <p className="mt-1 font-[family-name:var(--font-kr-display)] text-lg text-foreground">{c.ko}</p>
         <p className="mt-3 font-mono text-[10px] uppercase tracking-widest text-foreground/55">
           {c.role} · {c.accent}
         </p>
         <p className="mt-3 text-pretty text-sm leading-relaxed text-foreground/75">{c.tagline}</p>
 
-        {/* MBTI / 에니어그램 — 카드 가장 하단 */}
+        {/* MBTI / 에니어그램 */}
         <div className="mt-5 flex items-center justify-between border-t border-foreground/10 pt-3">
           <span
             className={`rounded-sm border px-2 py-[3px] font-mono text-[10px] uppercase tracking-[0.25em] ${
