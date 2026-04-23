@@ -41,6 +41,13 @@ const LOCATIONS = [
     desc: "자본과 쾌락의 정점. 핑크 조명의 인피니티 풀과 VIP 카바나. 에즈라 출몰지.",
     accent: "from-primary/80 to-primary/0",
   },
+  {
+    name: "THE YARD",
+    ko: "더 야드",
+    time: "ANYTIME",
+    desc: "해변가에 방치된 낡은 스케이트 파크. 거리 댄서들의 아지트이자 제약 없는 자유로운 사이퍼가 벌어지는 곳.",
+    accent: "from-accent/60 to-accent/0",
+  },
 ]
 
 export function Locations() {
@@ -57,8 +64,9 @@ export function Locations() {
               </span>
             </h2>
           </div>
+          {/* ⭐ 장소 개수가 7개로 늘어나서 07 Hotspots로 수정했어! */}
           <span className="hidden font-mono text-xs uppercase tracking-widest text-foreground/40 sm:block">
-            06 Hotspots
+            07 Hotspots
           </span>
         </div>
 
@@ -74,7 +82,8 @@ export function Locations() {
 
               <div className="flex items-center justify-between">
                 <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent">
-                  0{i + 1} · {loc.time}
+                  {/* i + 1이 10 미만이면 앞에 0을 붙여주는 센스! */}
+                  {i + 1 < 10 ? `0${i + 1}` : i + 1} · {loc.time}
                 </span>
                 <span className="h-2 w-2 rounded-full bg-primary shadow-[0_0_12px_oklch(0.7_0.27_350_/_0.9)]" />
               </div>
