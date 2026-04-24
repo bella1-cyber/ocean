@@ -2,7 +2,7 @@
 
 import React, { useState } from "react"
 
-const STORY_LINK = "https://share.crack.wrtn.ai/9xz41yd"
+const STORY_LINK = "https://share.crack.wrtn.ai/5pcnqt"
 
 const DATA = {
   questions: {
